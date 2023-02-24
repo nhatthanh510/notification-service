@@ -3,8 +3,10 @@ import {
   EmailNotificationHandler,
   PushNotificationHandler,
   SMSNotificationHandler,
-  User,
 } from './channel';
+import { EmailRequestDTO } from './dto/email_request.dto';
+import { PushNotificationDTO } from './dto/push_notification.dto';
+import { SMSRequestDTO } from './dto/sms_request.dto';
 
 @Injectable()
 export class NotificationService {
@@ -31,28 +33,30 @@ export class NotificationService {
     );
   }
 
-  async sendEmailToRecipients(users: User[]) {
+  async sendEmailToRecipients(request: EmailRequestDTO) {
     await this._emailNotificationHandler.sendNotification({
-      emailSubject: 'Test Email',
-      emailBody: 'Hello world!',
-      includeEmailTokens: users.map((user) => user.email),
+      emailSubject: request.emailSubject,
+      emailBody: request.emailContent,
+      includeEmailTokens: request.emails,
     });
   }
 
-  async sendSMSToRecipients(users: User[]) {
+  async sendSMSToRecipients(request: SMSRequestDTO) {
     await this._smsNotificationHandler.sendNotification({
       smsFrom: process.env.TWILIO_PHONE_NUMBER,
-      name: 'Test Notification Service ne',
-      contents: { en: 'English content ne' },
-      includePhoneNumbers: users.map((user) => user.phoneNumber),
+      name: request.name,
+      contents: request.contents,
+      includePhoneNumbers: request.phone_numbers,
     });
   }
 
-  async sendPushNotificationToRecipients(users: User[]) {
+  async sendPushNotificationToRecipients(request: PushNotificationDTO) {
     await this._pushNotificationHandler.sendNotification({
-      contents: { en: 'English content ne' },
-      headings: { en: 'English heading ne' },
-      includedSegments: ['Subscribed Users'],
+      contents: request.contents,
+      headings: request.headings,
+      includePlayerIds: request.player_ids,
+      includeExternalUserIds: request.one_signal_user_ids,
+      includedSegments: request.segments,
     });
   }
 }
