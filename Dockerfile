@@ -18,7 +18,8 @@ COPY .env.dev ./
 RUN npm install
 RUN npm run build
 
-COPY ./dist .
+COPY dist ./dist 
+COPY node_modules ./node_modules
 
 # Copy local code to the container image.
 #COPY . .
