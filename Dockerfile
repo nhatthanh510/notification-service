@@ -18,11 +18,8 @@ COPY .env.dev ./
 RUN npm install
 RUN npm run build
 
-COPY dist ./dist 
-COPY node_modules ./node_modules
-
 # Copy local code to the container image.
-#COPY . .
+COPY . .
 
 # Service must listen to $PORT environment variable.
 # This default value facilitates local development.
