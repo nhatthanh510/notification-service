@@ -5,7 +5,6 @@ import {
   SMSChannelRequest,
 } from './type';
 import { snakeCase } from 'lodash';
-
 import axios from 'axios';
 
 class ChannelRequestHandler<Request extends GeneralChannelRequest> {
@@ -40,7 +39,7 @@ class ChannelRequestHandler<Request extends GeneralChannelRequest> {
       console.log('response: ', response.data);
       return response;
     } catch (e) {
-      console.log('error ne: ', e.response.data);
+      console.log('error: ', e.response.data);
     }
     return null;
   }
