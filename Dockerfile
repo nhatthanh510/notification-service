@@ -22,9 +22,8 @@ COPY . .
 
 RUN yarn build
 
-COPY dist /usr/src/app/dist
-
-
+COPY --from=builder  /usr/src/app/dist ./dist
+COPY --from=builder  /usr/src/app/node_modules ./node_modules
 
 # Run the web service on container startup.
 CMD [ "node", "dist/main.js"]
