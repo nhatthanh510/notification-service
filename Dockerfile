@@ -22,8 +22,8 @@ COPY . .
 
 RUN yarn build
 
-COPY /usr/src/app/node_modules  ./node_modules
-COPY /usr/src/app/dist ./dist
+COPY node_modules /usr/src/app/node_modules
+COPY dist /usr/src/app/dist
 
 
 
