@@ -17,11 +17,11 @@ COPY .env.dev ./
 # Install production dependencies.
 RUN npm install
 
-# Copy local code to the container image.
-COPY . .
 RUN npm run build
 
+# Copy local code to the container image.
+COPY . .
 
 
 # Run the web service on container startup.
-CMD [ "npm", "start", "prod" ]
+CMD [ "npm", "start:prod" ]
