@@ -15,13 +15,13 @@ COPY .env.dev ./
 
 
 # Install production dependencies.
-RUN npm install
+RUN yarn install
 
-RUN npm run build
+RUN yarn build
 
 # Copy local code to the container image.
 COPY . .
 
 
 # Run the web service on container startup.
-CMD [ "npm", "start:prod" ]
+CMD [ "yarn", "start:prod"]
