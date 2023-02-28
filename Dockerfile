@@ -17,11 +17,15 @@ COPY .env.dev ./
 # Install production dependencies.
 RUN yarn install
 
+# Copy local code to the container image.
+COPY . .
+
 RUN yarn build
 
-# Copy local code to the container image.
-COPY . /usr/src/app
+COPY /usr/src/app/node_modules  ./node_modules
+COPY /usr/src/app/dist ./dist
+
 
 
 # Run the web service on container startup.
-CMD [ "yarn", "start:prod"]
+CMD [ "node", "dist/main.js"]
