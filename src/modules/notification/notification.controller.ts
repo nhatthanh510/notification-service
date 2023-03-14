@@ -1,8 +1,6 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { EmailRequestDTO } from './dto/email_request.dto';
-import { PushNotificationDTO } from './dto/push_notification.dto';
-import { SMSRequestDTO } from './dto/sms_request.dto';
+import { SMSRequestDTO, EmailRequestDTO, PushNotificationDTO } from './dto';
 import { NotificationService } from './notification.service';
 
 @Controller('notification')

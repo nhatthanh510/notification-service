@@ -4,9 +4,7 @@ import {
   PushNotificationHandler,
   SMSNotificationHandler,
 } from './channel';
-import { EmailRequestDTO } from './dto/email_request.dto';
-import { PushNotificationDTO } from './dto/push_notification.dto';
-import { SMSRequestDTO } from './dto/sms_request.dto';
+import { SMSRequestDTO, PushNotificationDTO, EmailRequestDTO } from './dto';
 
 @Injectable()
 export class NotificationService {
